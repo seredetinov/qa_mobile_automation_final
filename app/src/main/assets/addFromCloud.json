@@ -1,0 +1,64 @@
+{
+  "results": [{
+    "gender": "female",
+    "name": {
+      "title": "Mademoiselle",
+      "first": "Emma",
+      "last": "Marchand"
+    },
+    "location": {
+      "street": {
+        "number": 4900,
+        "name": "Rue D'Abbeville"
+      },
+      "city": "Escholzmatt-Marbach",
+      "state": "Graubünden",
+      "country": "Switzerland",
+      "postcode": 6666,
+      "coordinates": {
+        "latitude": "-60.9261",
+        "longitude": "5.1793"
+      },
+      "timezone": {
+        "offset": "+9:00",
+        "description": "Tokyo, Seoul, Osaka, Sapporo, Yakutsk"
+      }
+    },
+    "email": "emma.marchand@example.com",
+    "login": {
+      "uuid": "498d7745-a9cf-4321-ad6a-1f5d36adfab4",
+      "username": "purplebutterfly987",
+      "password": "generic",
+      "salt": "LX0mje61",
+      "md5": "e2438cfa3cb3eb817861bb03b5e8d87e",
+      "sha1": "25c2575aacc9e80dc9ca84c597894bec0cc01e51",
+      "sha256": "93e903307a4d1dd6375a5f1d810cf12800d7782b5a7202ae6d3621c5374a64ab"
+    },
+    "dob": {
+      "date": "1963-03-25T03:06:03.431Z",
+      "age": 62
+    },
+    "registered": {
+      "date": "2018-10-11T16:29:20.056Z",
+      "age": 6
+    },
+    "phone": "079 966 35 36",
+    "cell": "078 840 41 46",
+    "id": {
+      "name": "AVS",
+      "value": "756.8775.4061.06"
+    },
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/women/22.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/women/22.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/women/22.jpg"
+    },
+    "nat": "CH"
+  }],
+  "info": {
+    "seed": "6c24d34906dd0f3a",
+    "results": 1,
+    "page": 1,
+    "version": "1.4"
+  }
+}

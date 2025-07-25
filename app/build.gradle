@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace 'ru.tinkoff.favouritepersons'
-    compileSdk 33
+    compileSdk 35
 
     defaultConfig {
         applicationId "ru.tinkoff.favouritepersons"
@@ -62,8 +62,16 @@ dependencies {
     //room library
     implementation 'androidx.room:room-runtime:2.5.1'
     implementation 'androidx.room:room-ktx:2.5.1'
+    implementation 'androidx.compose.ui:ui-test-android:1.8.3'
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'androidx.databinding:baseLibrary:3.2.0-alpha11'
     kapt 'androidx.room:room-compiler:2.5.1'
+
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation("com.kaspersky.android-components:kaspresso:1.5.2")
+    androidTestUtil("androidx.test:orchestrator:1.4.2")
+    androidTestImplementation("com.github.tomakehurst:wiremock-standalone:2.27.2")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
 
 }
