@@ -3,6 +3,7 @@ package ru.tinkoff.favouritepersons.tests
 import androidx.test.core.app.ActivityScenario
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Test
+import ru.tinkoff.favouritepersons.PersonItemWithoutScore
 import ru.tinkoff.favouritepersons.presentation.activities.MainActivity
 import ru.tinkoff.favouritepersons.screens.StudentDetailsScreen
 import ru.tinkoff.favouritepersons.screens.StudentsListScreen
@@ -21,27 +22,9 @@ class AddWithoutScoreTest: TestCase() {
         StudentDetailsScreen {
             checkAddScreenIsOpened()
 
-            val name = "Тимур"
-            val surname = "Середетинов"
-            val gender = "М"
-            val birthdate = "2002-12-12"
-            val email = "seredetinofff@gmail.com"
-            val phone = "+79992849729"
-            val address = "Санкт-Петербург"
-            val image = "https:"
-            //val score = "77"
-
             //заполняем все поля ввода кроме поля рейтинг и пытаемся добавить студента
-            editName(name)
-            editSurname(surname)
-            editGender(gender)
-            editBirthdate(birthdate)
-            editEmail(email)
-            editPhone(phone)
-            editAddress(address)
-            editImage(image)
-            //editScore(score)
-            clickSubmit()
+            val personItemWithoutScore = PersonItemWithoutScore()
+            editFieldsAndSubmit(personItemWithoutScore)
 
             //проверяем, что мы остались на том же экране
             checkAddScreenIsOpened()

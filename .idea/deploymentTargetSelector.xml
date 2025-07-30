@@ -11,19 +11,19 @@
       <SelectionState runConfigName="testing">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="EditWithoutNameTest">
+      <SelectionState runConfigName="EditDuplicateTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="EditWithoutSurnameTest">
+      <SelectionState runConfigName="EditScreenAfterMinimizeTest">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="AddFromCloudTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="EditWithoutBirthdateTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="EditWithoutScoreTest">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="OpenStudentCardTest">
+      <SelectionState runConfigName="EditWithoutNameTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

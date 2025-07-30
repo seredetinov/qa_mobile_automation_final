@@ -3,6 +3,7 @@ package ru.tinkoff.favouritepersons.tests
 import androidx.test.core.app.ActivityScenario
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Test
+import ru.tinkoff.favouritepersons.PersonItem
 import ru.tinkoff.favouritepersons.presentation.activities.MainActivity
 import ru.tinkoff.favouritepersons.screens.StudentDetailsScreen
 import ru.tinkoff.favouritepersons.screens.StudentDetailsScreen.checkAddScreenIsOpened
@@ -20,26 +21,9 @@ class AddDuplicateTest: TestCase() {
                 if (i==1) clickAddMenu()
                 clickAddPersonManually()
             }
-            val name = "Дмитрий"
-            val surname = "Кирпа"
-            val gender = "М"
-            val birthdate = "2002-10-10"
-            val email = "seredetinoff@gmail.com"
-            val phone = "+79992849729"
-            val address = "Великий Новгород"
-            val image = "https:"
-            val score = "76"
+            val personItem = PersonItem()
             StudentDetailsScreen {
-                editName(name)
-                editSurname(surname)
-                editGender(gender)
-                editBirthdate(birthdate)
-                editEmail(email)
-                editPhone(phone)
-                editAddress(address)
-                editImage(image)
-                editScore(score)
-                clickSubmit()
+                editFieldsAndSubmit(personItem)
             }
 
             var listSizeBeforeAddDuplicate = -1 //количество студентов в списке перед добавлением дубликата

@@ -1,7 +1,7 @@
 package ru.tinkoff.favouritepersons.tests
 
 import androidx.test.core.app.ActivityScenario
-import com.github.tomakehurst.wiremock.client.WireMock.aResponse
+import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder.okForJson
 import com.github.tomakehurst.wiremock.client.WireMock.get
 import com.github.tomakehurst.wiremock.client.WireMock.stubFor
 import com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo
@@ -12,6 +12,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import ru.tinkoff.favouritepersons.CommonFunc.readJsonFileFromAssets
+import ru.tinkoff.favouritepersons.PersonItem
 import ru.tinkoff.favouritepersons.Prefs
 import ru.tinkoff.favouritepersons.presentation.activities.MainActivity
 import ru.tinkoff.favouritepersons.screens.StudentDetailsScreen
@@ -31,12 +32,8 @@ class EditTest: TestCase() {
     fun editTest() = run {
         stubFor(
             get(urlEqualTo("/api/"))
-                .willReturn(
-                    aResponse()
-                        .withStatus(200)
-                        .withHeader("Content-Type","application/json")
-                        .withBody(readJsonFileFromAssets("addFromCloud.json"))
-                ))
+                .willReturn(okForJson(readJsonFileFromAssets("addFromCloud.json")))
+        )
 
         ActivityScenario.launch(MainActivity::class.java)
         StudentsListScreen {
@@ -45,47 +42,20 @@ class EditTest: TestCase() {
             openStudentCardByIndex(0)
         }
 
-        val name = "Тимур"
-        val surname = "Середетинов"
-        val gender = "М"
-        val birthdate = "2002-12-12"
-        val email = "seredetinofff@gmail.com"
-        val phone = "+79992849729"
-        val address = "Санкт-Петербург"
-        val image = "https:"
-        val score = "77"
-
         //изменяем значения в полях ввода и нажимаем кнопку Сохранить
+        val personItem = PersonItem()
         StudentDetailsScreen {
-            editName(name)
-            editSurname(surname)
-            editGender(gender)
-            editBirthdate(birthdate)
-            editEmail(email)
-            editPhone(phone)
-            editAddress(address)
-            editImage(image)
-            editScore(score)
-            clickSubmit()
+            editFieldsAndSubmit(personItem)
         }
 
         //проверяем, что карточка студента обновилась
         StudentsListScreen {
-            openStudentCard(name,surname,gender,email,phone,address,score)
+            openStudentCard(personItem.name,personItem.surname,personItem.gender,personItem.email,personItem.phone,personItem.address,personItem.score)
         }
 
         //проверяем, что отредактированные поля сохранены
         StudentDetailsScreen {
-            checkEditScreenIsOpened()
-            checkNameFieldText(name)
-            checkSurnameFieldText(surname)
-            checkGenderFieldText(gender)
-            checkBirthdateFieldText(birthdate)
-            checkEmailFieldText(email)
-            checkPhoneFieldText(phone)
-            checkAddressFieldText(address)
-            checkImageFieldText(image)
-            checkScoreFieldText(score)
+            checkFields(personItem)
         }
     }
 

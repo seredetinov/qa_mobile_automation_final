@@ -4,7 +4,7 @@ import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Test
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
-import com.github.tomakehurst.wiremock.client.WireMock.aResponse
+import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder.okForJson
 import com.github.tomakehurst.wiremock.client.WireMock.get
 import com.github.tomakehurst.wiremock.client.WireMock.stubFor
 import com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo
@@ -13,6 +13,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import ru.tinkoff.favouritepersons.CommonFunc.readJsonFileFromAssets
+import ru.tinkoff.favouritepersons.PersonItem
 import ru.tinkoff.favouritepersons.Prefs
 import ru.tinkoff.favouritepersons.presentation.activities.MainActivity
 import ru.tinkoff.favouritepersons.screens.StudentsListScreen
@@ -32,12 +33,8 @@ class EditScreenAfterMinimizeTest: TestCase() {
     fun addScreenAfterMinimizeTest() = run{
         stubFor(
             get(urlEqualTo("/api/"))
-                .willReturn(
-                    aResponse()
-                        .withStatus(200)
-                        .withHeader("Content-Type","application/json")
-                        .withBody(readJsonFileFromAssets("addFromCloud.json"))
-                ))
+                .willReturn(okForJson(readJsonFileFromAssets("addFromCloud.json")))
+        )
 
         ActivityScenario.launch(MainActivity::class.java)
         StudentsListScreen {
@@ -46,27 +43,10 @@ class EditScreenAfterMinimizeTest: TestCase() {
             openStudentCardByIndex(0)
         }
 
-        val name = "Тимур"
-        val surname = "Середетинов"
-        val gender = "М"
-        val birthdate = "2002-12-12"
-        val email = "seredetinofff@gmail.com"
-        val phone = "+79992849729"
-        val address = "Санкт-Петербург"
-        val image = "https:"
-        val score = "77"
-
         //заполняем поля ввода
+        val personItem = PersonItem()
         StudentDetailsScreen {
-            editName(name)
-            editSurname(surname)
-            editGender(gender)
-            editBirthdate(birthdate)
-            editEmail(email)
-            editPhone(phone)
-            editAddress(address)
-            editImage(image)
-            editScore(score)
+            editFieldsAndSubmit(personItem, submit = false)
         }
 
         //сворачиваем приложение
@@ -79,16 +59,7 @@ class EditScreenAfterMinimizeTest: TestCase() {
 
         //проверяем, что введенные данные сохранены
         StudentDetailsScreen {
-            checkEditScreenIsOpened()
-            checkNameFieldText(name)
-            checkSurnameFieldText(surname)
-            checkGenderFieldText(gender)
-            checkBirthdateFieldText(birthdate)
-            checkEmailFieldText(email)
-            checkPhoneFieldText(phone)
-            checkAddressFieldText(address)
-            checkImageFieldText(image)
-            checkScoreFieldText(score)
+            checkFields(personItem)
         }
 
     }

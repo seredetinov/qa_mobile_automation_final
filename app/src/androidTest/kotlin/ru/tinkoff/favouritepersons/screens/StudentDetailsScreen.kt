@@ -5,6 +5,7 @@ import io.github.kakaocup.kakao.edit.KTextInputLayout
 import io.github.kakaocup.kakao.screen.Screen
 import io.github.kakaocup.kakao.text.KButton
 import io.github.kakaocup.kakao.text.KTextView
+import ru.tinkoff.favouritepersons.PersonItem
 import ru.tinkoff.favouritepersons.R
 
 object StudentDetailsScreen: Screen<StudentDetailsScreen>() {
@@ -40,6 +41,20 @@ object StudentDetailsScreen: Screen<StudentDetailsScreen>() {
         tilScore.hasError("Поле должно быть заполнено двузначным числом")
     }
 
+    fun editFieldsAndSubmit(personItem: PersonItem, submit: Boolean = true){
+        nameField.replaceText(personItem.name)
+        surnameField.replaceText(personItem.surname)
+        genderField.replaceText(personItem.gender)
+        birthdateField.replaceText(personItem.birthdate)
+        emailField.replaceText(personItem.email)
+        phoneField.replaceText(personItem.phone)
+        addressField.replaceText(personItem.address)
+        imageField.replaceText(personItem.image)
+        scoreField.replaceText(personItem.score)
+        if (submit==true) submitButton.click()
+    }
+
+
     fun editName(name: String){
         nameField.replaceText(name)
     }
@@ -74,6 +89,18 @@ object StudentDetailsScreen: Screen<StudentDetailsScreen>() {
 
     fun editScore(score: String){
         scoreField.replaceText(score)
+    }
+
+    fun checkFields(personItem: PersonItem) {
+        nameField.hasText(personItem.name)
+        surnameField.hasText(personItem.surname)
+        genderField.hasText(personItem.gender)
+        birthdateField.hasText(personItem.birthdate)
+        emailField.hasText(personItem.email)
+        phoneField.hasText(personItem.phone)
+        addressField.hasText(personItem.address)
+        imageField.hasText(personItem.image)
+        scoreField.hasText(personItem.score)
     }
 
     fun checkNameFieldText(text: String){

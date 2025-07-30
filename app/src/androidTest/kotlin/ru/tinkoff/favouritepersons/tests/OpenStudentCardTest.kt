@@ -1,7 +1,7 @@
 package ru.tinkoff.favouritepersons.tests
 
 import androidx.test.core.app.ActivityScenario
-import com.github.tomakehurst.wiremock.client.WireMock.aResponse
+import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder.okForJson
 import com.github.tomakehurst.wiremock.client.WireMock.get
 import com.github.tomakehurst.wiremock.client.WireMock.stubFor
 import com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo
@@ -31,12 +31,8 @@ class OpenStudentCardTest: TestCase() {
    fun openStudentCardTest() = run{
        stubFor(
            get(urlEqualTo("/api/"))
-               .willReturn(
-                   aResponse()
-                       .withStatus(200)
-                       .withHeader("Content-Type","application/json")
-                       .withBody(readJsonFileFromAssets("addFromCloud.json"))
-               ))
+               .willReturn(okForJson(readJsonFileFromAssets("addFromCloud.json")))
+       )
        ActivityScenario.launch(MainActivity::class.java)
 
        StudentsListScreen {
